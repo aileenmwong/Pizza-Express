@@ -1,6 +1,6 @@
 // Write your model in this file!
 
-// import the pg-promise instance(db/config)
+// import the pg-promise instance
 const db = require('../db/config');
 
 // declare an empty Pizza object
@@ -21,6 +21,7 @@ Pizza.findById = (id) => {
     `,[id]);
 }
 
+// add a create method to pizza that inserts in to the pizza database new pizzas
 Pizza.create = quote => {
   return db.one(
     `
@@ -33,6 +34,7 @@ Pizza.create = quote => {
     );
 }
 
+//add an update method to pizza that updates the pizzas flavor, description and location by id
 Pizza.update = (pizza, id) => {
   return db.one(`
     UPDATE pizza SET
@@ -43,7 +45,7 @@ Pizza.update = (pizza, id) => {
     RETURNING *
     `, [pizza.flavor, pizza.description, pizza.location, id]);
 }
-//destroy method is similar to findByID method
+//add a destroy method to pizza that destroys pizzas by id number
 Pizza.destroy = (id) => {
   return db.none(`
     DELETE FROM pizza
