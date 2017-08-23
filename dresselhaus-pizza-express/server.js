@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+// get the index page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -27,7 +28,9 @@ const pizzaRoutes = require('./routes/pizza-routes');
 //make sure teh app is using the pizza routes file
 app.use('/pizza', pizzaRoutes);
 
-//if the app is trying to get anything except the /, then return the status 404 and let user know that is an invalid route
+
+
+//if the app is trying to get anything except the above routes, then return the status 404 and let user know that is an invalid route
 app.get('*', (req, res) => {
   res.status(404).json({
     message: 'Invalid route!',

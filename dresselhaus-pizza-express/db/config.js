@@ -28,3 +28,4 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
 
 // export database
 module.exports = db;
+//this is sent to model

@@ -22,7 +22,7 @@ Pizza.findById = (id) => {
 }
 
 // add a create method to pizza that inserts in to the pizza database new pizzas
-Pizza.create = quote => {
+Pizza.create = pizza => {
   return db.one(
     `
     INSERT INTO pizza
@@ -55,3 +55,4 @@ Pizza.destroy = (id) => {
 
 // export the Pizza object from the model file
 module.exports = Pizza;
+//this is sent to pizza controller
