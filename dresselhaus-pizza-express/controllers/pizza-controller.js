@@ -8,22 +8,25 @@ const pizzaController = {};
 
 // make the controller for the pizza index. It will be called when someone GETs the /pizza route, and will ask the model to get all the pizzas and send them back as JSON data.
 pizzaController.index = (req, res) => {
+  // find all of the pizzas
   Pizza.findAll()
   // then needs to come first as a promise
   .then(pizza => {
+    //send back pizza as JSON data
     res.json({
       message: 'ok',
       data: pizza,
     });
   // catch comes second as a promise
   }).catch(err => {
+    // if there is an error, console log the error and return the 500 status
     console.log(err);
     res.status(500).json(err);
   });
 }
 
 // In both of these, we're passing req.params.id into the model's method.
-// In the show method, we're getting a Quote back from the database and sending it as json.
+// In the show method, we're getting a Pizza back from the database and sending it as json.
 pizzaController.show = (req, res) => {
   Pizza.findById(req.params.id)
     .then(pizza => {
@@ -54,6 +57,22 @@ pizzaController.create = (req, res) => {
     res.status(500).json(err);
   });
 };
+
+pizzaController.update = (req, res) => {
+  Pizza.update({
+    flavor: req.body.flavor,
+    description: req.body.description,
+    location: req.body.location,
+  }, req.params.id).then(quote => {
+    res.json({
+      message: 'Pizza updated successfully!',
+      data: pizza,
+    });
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+}
 
 // In the delete method, we're not getting anything back from the database -- we're just sending back a message that it worked.
 pizzaController.delete = (req, res) => {

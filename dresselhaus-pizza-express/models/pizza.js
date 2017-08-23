@@ -31,7 +31,18 @@ Pizza.create = quote => {
     `,
     [pizza.flavor, pizza.description, pizza.location]
     );
-};
+}
+
+Pizza.update = (pizza, id) => {
+  return db.one(`
+    UPDATE pizza SET
+    flavor = $1,
+    description = $2,
+    location = $3
+    WHERE id = $4
+    RETURNING *
+    `, [pizza.flavor, pizza.description, pizza.location, id]);
+}
 //destroy method is similar to findByID method
 Pizza.destroy = (id) => {
   return db.none(`

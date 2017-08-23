@@ -11,6 +11,7 @@ the update route is still commented out, we will learn about how to do it tomorr
 pizzaRoutes.put('/:id', pizzaController.update);
 */
 pizzaRoutes.get('/:id', pizzaController.show);
+pizzaRoutes.put('/:id', pizzaController.update);
 pizzaRoutes.delete('/:id', pizzaController.delete);
 
 module.exports = pizzaRoutes;
