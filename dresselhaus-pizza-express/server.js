@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+//IMPORTANT
 //declare a variable called pizzaRoutes and link that to the route file
 const pizzaRoutes = require('./routes/pizza-routes');
 //make sure teh app is using the pizza routes file
